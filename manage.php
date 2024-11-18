@@ -36,9 +36,9 @@ dd($_FILES); */
 
 if(isset($_FILES['img'])){
     if($_FILES['img']['error']==0){
-    
+
         move_uploaded_file($_FILES['img']['tmp_name'],"./files/".$_FILES['img']['name']);
-    
+
     }else{
         echo "上傳失敗，請檢查檔案格式或是大小是否符合規定";
     }
@@ -57,6 +57,7 @@ $items=array_diff($items,array('.','..'));
 foreach($items as $file){
     echo "<div class='item'>";
     echo "<img src='{$dirpath}/{$file}'>";
+    echo "<a href='del_img.php?file={$file}'>刪除</a>";
     echo "</div>";
 }
 ?>
