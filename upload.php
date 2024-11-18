@@ -27,9 +27,12 @@
 <body>
  <h1 class="header">檔案上傳練習</h1>
  <!----建立你的表單及設定編碼----->
+     <!----建立你的表單及設定編碼----->
+    <!-- enctype => 檔案上傳 -->
+     <!-- multipart =>上傳二進位 -->
 <form action="manage.php" method="post" enctype="multipart/form-data">
- <input type="file" name="img" id="file">
- <input type="text" name="name" id="name">
+ <input type="file" name="filename" >
+ <input type="text" name="desc" >
  <input type="submit" value="上傳">
 
 </form>
