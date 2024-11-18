@@ -38,10 +38,26 @@
             width:120px;
         }
 
+        .btn{
+            display: inline;
+            padding: 10px 20px;
+            background-color: lightpink;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+        background-color: #FF7575;  /* 懸停時的背景顏色 */
+    }
     </style>
 </head>
 <body>
 <h1 class="header">檔案管理練習</h1>
+<a href="./upload.php" class="btn">前往upload</a>
+
 <!----建立上傳檔案表單及相關的檔案資訊存入資料表機制----->
 <?php
 include_once "function.php";
@@ -51,7 +67,7 @@ dd($_FILES); */
 
 if(isset($_FILES['filename'])){
     if($_FILES['filename']['error']==0){
-        $filename=$_FILES['filename']['name'];
+        $filename=time() . $_FILES['filename']['name'];
         move_uploaded_file($_FILES['filename']['tmp_name'],"./files/".$filename);
         $desc=$_POST['desc'];
         insert("imgs",['filename'=>$filename,'desc'=>$desc]);
@@ -97,6 +113,10 @@ foreach($rows as $file){
     echo "</tr>";
 }
 echo "</table>";
+
+
+
+
 ?>
 
 
