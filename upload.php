@@ -29,7 +29,7 @@
  <!----建立你的表單及設定編碼----->
      <!----建立你的表單及設定編碼----->
     <!-- enctype => 檔案上傳 -->
-     <!-- multipart =>上傳二進位 -->
+    <!-- multipart =>上傳二進位 -->
 <form action="manage.php" method="post" enctype="multipart/form-data">
  <input type="file" name="filename" >
  <input type="text" name="desc" >

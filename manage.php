@@ -28,7 +28,7 @@
 
         /* 將檔案變成格方式呈現 */
         table{
-            width:500px;
+            width:700px;
             margin:20px auto;
             }
         td{
@@ -52,6 +52,17 @@
         .btn:hover {
         background-color: #FF7575;  /* 懸停時的背景顏色 */
     }
+
+            a{
+            display: inline-block;
+            padding:5px 10px;
+            border: 1px solid #ccc;
+            margin:5px;
+            border-radius: 8px;
+        }
+        a:hover{
+            background-color:skyblue;
+        }
     </style>
 </head>
 <body>
@@ -118,9 +129,6 @@ echo "</table>";
 
 
 ?>
-
-
-
 
 
 

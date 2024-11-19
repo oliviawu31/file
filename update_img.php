@@ -1,7 +1,13 @@
 <?php
 include_once "function.php";
+$id=$_POST['id'];
 
+$row=find('imgs',$id);
+dd($_POST);
+dd($row)
 $imgName=$_POST['imgName'];
+
+exit();
 echo $imgName;
 if(isset($_FILES['img'])){
     if($_FILES['img']['error']==0){
