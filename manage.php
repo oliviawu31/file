@@ -79,7 +79,7 @@ dd($_FILES); */
 if(isset($_FILES['filename'])){
     if($_FILES['filename']['error']==0){
         $filename=time() . $_FILES['filename']['name'];
-        move_uploaded_file($_FILES['filename']['tmp_name'],"./files/".$filename);
+        move_uploaded_file($_FILES['filename']['tmp_name'],"./imgs/".$filename);
         $desc=$_POST['desc'];
         insert("imgs",['filename'=>$filename,'desc'=>$desc]);
     }else{
