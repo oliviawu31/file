@@ -113,6 +113,7 @@ function getfile($path){
         echo "Error creating table: " . $e->getMessage();
         echo " <br> at data row $count";
         echo "<br> $sql";
+
     }
 }
 

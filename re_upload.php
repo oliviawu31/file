@@ -29,17 +29,17 @@
  <!----建立你的表單及設定編碼----->
 
  <?php
- include_once "function.php";
- $id=$_GET['id'];
- $row=find('imgs',id);
- ?>
-
+include_once "function.php";
+$id=$_GET['id'];
+$row=find('imgs',$id);
+//dd($row);
+?>
 <form action="update_img.php" method="post" enctype="multipart/form-data">
-    <img src="files/<?=$row['filename'];?>" style="width:200px" alt="">
- <input type="file" name="filename" id="file">
- <input type="text" name="desc" value="<?=$row['desc'];?>">
- <input type="hidden" name="id" value="<?=$id;?>">
- <input type="submit" value="上傳">
+<img src="files/<?=$row['filename'];?>" style="width:200px">
+<input type="file" name="filename" id="file">
+<input type="text" name="desc" value="<?=$row['desc'];?>">
+<input type="hidden" name="id" value="<?=$id;?>">
+<input type="submit" value="上傳">
 
 </form>
 

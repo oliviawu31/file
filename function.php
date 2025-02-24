@@ -1,6 +1,7 @@
 <?php
 
-define("DBNAME","file");
+include_once "conf.php";
+
 
 /**
  * 建立資料庫的連線變數
@@ -9,7 +10,7 @@ define("DBNAME","file");
  */
 function pdo($db){
     $dsn="mysql:host=localhost;charset=utf8;dbname=$db";
-    $pdo=new PDO($dsn,'root','');
+    $pdo=new PDO($dsn,USERNAME,USERPASSWORD);
     return $pdo;
 }
 
@@ -80,6 +81,20 @@ function del($table ,$id){
     
 }
 
+
+/**
+ * 新增或更新資料
+ */
+function save($table,$array){
+    if(isset($array['id'])){
+        //update
+        update($table,$array);
+    }else{
+        //insert
+        insert($table,$array);
+    }
+}
+
 /**
  * 更新指定條件的資料
  * @param string $table 資料表名稱
@@ -88,6 +103,24 @@ function del($table ,$id){
  * @return boolean
  */
 
+function update($table,$array){
+    $sql="update $table set ";
+    $pdo=$pdo=pdo(DBNAME);
+    $tmp=[];
+    if(isset($array['id'])){
+        $id=$array['id'];
+        unset($array['id']);
+
+        foreach($array as $key => $value){
+            $tmp[]="`$key`='$value'";
+        }
+
+        $sql=$sql . join(",",$tmp) . " where `id`='$id'";
+    }
+
+    return $pdo->exec($sql);
+}
+/* 
 function update($table,$array,$id){
     $sql="update $table set ";
     $pdo=$pdo=pdo(DBNAME);
@@ -109,9 +142,7 @@ function update($table,$array,$id){
     }
 
     return $pdo->exec($sql);
-
-
-}
+} */
 
 /**
  * 新增資料

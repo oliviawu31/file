@@ -54,7 +54,7 @@ if(!empty($_FILES['file']['tmp_name'])){
 
     $dst_small=imagecreatetruecolor($dst_small_width,$dst_small_height);
     imagecopyresampled($dst_small,$src,0,0,0,0,$dst_small_width,$dst_small_height,$src_info[0],$src_info[1]);
-
+    
     $dst_big=imagecreatetruecolor($dst_big_width,$dst_big_height);
     imagecopyresampled($dst_big,$src,0,0,0,0,$dst_big_width,$dst_big_height,$src_info[0],$src_info[1]);
 
@@ -80,7 +80,6 @@ if(!empty($_FILES['file']['tmp_name'])){
 </div>
 
 <!----圖形加邊框----->
-
 <h2 class="text-center">圖形加邊框</h2>
 <?php
 $border=10;
@@ -102,6 +101,7 @@ imagejpeg($border_dst,"./images/border_{$_FILES['file']['name']}");
 
 ?>
 <img src="<?="./images/border_{$_FILES['file']['name']}";?>" alt="">
+
 
 <!----產生圖形驗證碼----->
 

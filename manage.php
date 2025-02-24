@@ -16,44 +16,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>檔案管理功能</title>
     <link rel="stylesheet" href="style.css">
-
     <style>
-        /*  上傳圖片  */
-        /* .item{
-            width:200px;
-        }
-        .item img{
-            width:100%;
-        } */
-
-        /* 將檔案變成格方式呈現 */
         table{
             width:700px;
             margin:20px auto;
-            }
+        }
         td{
             padding:5px 10px;
+
         }
         td img{
             width:120px;
         }
 
-        .btn{
-            display: inline;
-            padding: 10px 20px;
-            background-color: lightpink;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-        background-color: #FF7575;  /* 懸停時的背景顏色 */
-    }
-
-            a{
+        a{
             display: inline-block;
             padding:5px 10px;
             border: 1px solid #ccc;
@@ -67,8 +43,6 @@
 </head>
 <body>
 <h1 class="header">檔案管理練習</h1>
-<a href="./upload.php" class="btn">前往upload</a>
-
 <!----建立上傳檔案表單及相關的檔案資訊存入資料表機制----->
 <?php
 include_once "function.php";
@@ -79,9 +53,11 @@ dd($_FILES); */
 if(isset($_FILES['filename'])){
     if($_FILES['filename']['error']==0){
         $filename=time() . $_FILES['filename']['name'];
-        move_uploaded_file($_FILES['filename']['tmp_name'],"./imgs/".$filename);
+        move_uploaded_file($_FILES['filename']['tmp_name'],"./files/".$filename);
         $desc=$_POST['desc'];
-        insert("imgs",['filename'=>$filename,'desc'=>$desc]);
+
+        save("imgs",['filename'=>$filename,'desc'=>$desc]);
+
     }else{
         echo "上傳失敗，請檢查檔案格式或是大小是否符合規定";
     }
@@ -89,28 +65,6 @@ if(isset($_FILES['filename'])){
 ?>
 
 <!----透過檔案讀取來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
-<?php
-
-// $dirpath="./files";
-
-// //$dir=opendir($dirpath);
-// $items=scandir($dirpath);
-// $items=array_diff($items,array('.','..'));
-
-// foreach($items as $file){
-//     echo "<div class='item'>";
-//     echo "<img src='{$dirpath}/{$file}'>";
-//     echo "<a href='del_img.php?file={$file}'>刪除</a>";
-//     echo "<a href='re_upload.php?file={$file}'>重新上傳</a>";
-//     echo "</div>";
-// }
-?>
-
-
-
-
-<!----透過資料表來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
-
 <?php
 
 $rows=all('imgs');
@@ -130,6 +84,12 @@ foreach($rows as $file){
 }
 echo "</table>";
 ?>
+
+
+
+
+<!----透過資料表來顯示檔案的資訊，並可對檔案執行更新或刪除的工作----->
+
 
 
 
